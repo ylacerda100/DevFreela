@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevFreela.API.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,19 @@ namespace DevFreela.API.Controllers
         public IActionResult GetById(int id)
         {
             return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post(int id, [FromBody] CreateProjectModel createProject)
+        {
+            return CreatedAtAction(nameof(GetById), new { id = createProject.Id, title = createProject.Title, description = createProject.Description });
+        }
+
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] UpdateProjectModel updateProject)
+        {
+            return NoContent();
         }
     }
 }
