@@ -25,12 +25,18 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public IActionResult Post(int id, [FromBody] CreateProjectModel createProject)
         {
-            return CreatedAtAction(nameof(GetById), new { id = createProject.Id, title = createProject.Title, description = createProject.Description });
+            return CreatedAtAction(nameof(GetById), new { id = createProject.Id }, createProject);
         }
 
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UpdateProjectModel updateProject)
+        {
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
             return NoContent();
         }
